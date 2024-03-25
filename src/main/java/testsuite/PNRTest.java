@@ -2,6 +2,7 @@ package testsuite;
 
 import java.awt.AWTException;
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.Properties;
 
@@ -27,7 +28,7 @@ public class PNRTest extends Reuseable {
 
 	
 	@Test
-	public void PNR_Creation() throws IOException, InterruptedException, ParserConfigurationException, SAXException, AWTException, ParseException, org.json.simple.parser.ParseException {
+	public void PNR_Creation() throws IOException, InterruptedException, ParserConfigurationException, SAXException, AWTException, ParseException, org.json.simple.parser.ParseException, NoSuchAlgorithmException {
 
 		BufferedReader reader = new BufferedReader(new FileReader(Constants.settingsFileLoc));
 		Properties properties = new Properties();

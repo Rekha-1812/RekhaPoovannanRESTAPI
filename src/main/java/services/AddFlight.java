@@ -1,6 +1,8 @@
 package services;
 
 import io.restassured.*;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.config.SSLConfig;
 import io.restassured.response.Response;
 import utilities.Constants;
 import utilities.Reuseable;
@@ -10,23 +12,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-import org.json.simple.parser.ParseException;
 
 public class AddFlight extends Reuseable {
 
-	public static void flightAddition(Properties p) throws IOException, ParseException {	
+	public static void flightAddition(Properties p) throws IOException {	
 
-		// Updating addFlightRequest json
-	/*	byte[] b = Files.readAllBytes(Paths.get(Constants.requestBody_AddFlight));
-		String addFlightRequest = new String(b);
-
-		byte[] b1 = Files.readAllBytes(Paths.get(Constants.responseBody_SelectedFlight));
-		selectedFlightResponse = new String(b1);
-
-		selectedFlightResponseUpdated = prepareAPIRequestDynamically(addFlightRequest, serachRq,
-				selectedFlightResponse); 
-		
-		//updateJson_addFlightRequest(); */
+		 // Enable SSL certificate verification
+	     //  RestAssured.useRelaxedHTTPSValidation();	
 		
 		System.out.println("Security Token wtout: " + SecurityToken);
 		System.out.println("Security Token: " + "\""+SecurityToken +"\"");
@@ -34,10 +26,12 @@ public class AddFlight extends Reuseable {
 		File requestBodyFile = new File(Constants.requestBody_AddFlight);
 
 		// POST request
-		Response response = RestAssured.given().baseUri("https://qa1-flights2.np.flydubai.com")
+		Response response = RestAssured.given()
+				.relaxedHTTPSValidation()
+				.baseUri("https://qa1-flights2.np.flydubai.com")
 				.contentType("application/json")
 				.header("SecurityToken", SecurityToken)
-				.body(requestBodyFile) //.body(selectedFlightResponseUpdated)				
+				.body(requestBodyFile) 				
 				.post("/api/itinerary/AddFlight");		
 
 		// Retrieve and print response status code
