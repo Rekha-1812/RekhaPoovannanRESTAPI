@@ -1,0 +1,25 @@
+{
+  
+   "cabinClass":"Economy",
+   "promoCode":"TESTTEST",
+  "isDestMetro": false,
+  "isOriginMetro": true,
+  "paxInfo": {
+    "adultCount": 2,
+    "childCount": 0,
+    "infantCount":0
+  },
+  "searchCriteria": [
+    {
+      "date": "05/29/2024",
+      "dest": "PRG",
+      "direction": "outBound",
+      "origin": "DXB",
+      "isOriginMetro": true,
+      "isDestMetro": false
+    }
+   
+  ],
+  "variant": "1",
+  "curr": "INR"
+}
